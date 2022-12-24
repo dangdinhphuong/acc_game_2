@@ -1,0 +1,37 @@
+@use "sass:math";
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    //@return divide($number, ($number * 0 + 1));
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+/** Pixel to View width (px -> vw) **/
+$precision: 8;
+@function px2vw($px-num: null, $break-point: null){
+  //@return divide(strip-unit($px-num) * 100, strip-unit($break-point), $precision) + 0vw;
+  @return math.div(strip-unit($px-num) * 100, strip-unit($break-point)) + 0vw;
+}
+
+@function px2vw-pc($px-num: null){
+  //@return divide(strip-unit($px-num) * 100, strip-unit($breakpoint-pc), $precision) + 0vw;
+  @return math.div(strip-unit($px-num) * 100, strip-unit($breakpoint-pc)) + 0vw;
+}
+
+@function px2vw-pc2($px-num: null){
+  //@return divide(strip-unit($px-num) * 100, strip-unit($breakpoint-pc), $precision) + 0vw;
+  @return math.div(strip-unit($px-num) * 100, strip-unit($breakpoint-pc2)) + 0vw;
+}
+
+@function px2vw-sp($px-num: null){
+  //@return divide(strip-unit($px-num) * 100, strip-unit( $breakpoint-sp), $precision) + 0vw;
+  @return math.div(strip-unit($px-num) * 100, strip-unit( $breakpoint-sp)) + 0vw;
+}
+
+/**/
+@function imgs_path($file){
+  @return '../imgs/'+$file;
+}

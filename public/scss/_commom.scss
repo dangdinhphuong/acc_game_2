@@ -1,0 +1,67 @@
+// Commom css
+.back-top {
+  position: fixed;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  bottom: 50px;
+  background-color: $sub-color;
+  color: $white-color;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.fixed {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0px 50px;
+  width: 100%;
+}
+
+/** Common code **/
+.hide-pc {
+  display: none !important;
+
+  @include responsive-px-sp() {
+    display: block !important;
+  }
+}
+
+.hide-sp {
+  display: block !important;
+
+  @include responsive-px-sp() {
+    display: none !important;
+  }
+}
+
+.hide-flex{
+  display: flex !important;
+
+  @include responsive-px-sp() {
+    display: none !important;
+  }
+}
+
+.containerX {
+  max-width: $breakpoint-pc;
+  margin: 0 auto;
+  padding: 0 $containerX-padding;
+
+  @include responsive-vw-pc() {
+    padding: 0 px2vw-pc($containerX-padding);
+  }
+
+  @include responsive-px-sp() {
+    padding: 0 px2vw-sp($containerX-padding);
+  }
+
+}

@@ -1,0 +1,46 @@
+//Mixin new type responsive (responsive with "vw" unit)
+
+/*Use only for change size*/
+@mixin responsive-vw-pc(){
+    $min: $breakpoint-sp + .98;
+    $max: $breakpoint-pc - .02;
+  
+    @media only screen and (min-width: $min ) and (max-width: $max) {
+      @content;
+    }
+  }
+  
+  @mixin responsive-px-sp(){
+    @media only screen and (max-width: $breakpoint-sp+0.98) {
+      @content;
+    }
+  }
+  
+  @mixin responsive-vw-sp(){
+    $max: $breakpoint-sp - .02;
+  
+    @media only screen and (max-width: $max) {
+      @content;
+    }
+  }
+  
+  //-----------------------------------------//
+  @mixin media-custom-size-up($min-width){
+    @media only screen and (min-width: $min-width){
+      @content;
+    }
+  }
+  
+  @mixin media-custom-size-down($max-width){
+    @media only screen and (max-width: $max-width){
+      @content;
+    }
+  }
+  
+  @mixin media-custom-size-between($min-width, $max-width){
+    @media only screen and (min-width: $min-width) and (max-width: $max-width) {
+      @content;
+    }
+  }
+  
+  

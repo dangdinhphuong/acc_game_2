@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: rgb(235, 232, 232);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $primary-color;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $base-font-size;
+  font-weight: $font-weight-default;
+}
+
+.header {
+  background-color: $primary-color;
+  width: 100%;
+  z-index: 10;
+  @include responsive-vw-pc() {
+    height: px2vw-pc(150px);
+  }
+
+  @include responsive-px-sp() {
+    height: px2vw-sp(150px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+

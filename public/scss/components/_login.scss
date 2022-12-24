@@ -1,0 +1,306 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: auto 415px;
+  @include responsive-vw-pc() {
+    grid-template-columns: auto px2vw-pc(415px);
+  }
+
+  @include responsive-px-sp() {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    position: relative;
+    height: 100vh;
+    .container__image--box {
+      width: 100%;
+      .container__image {
+        width: 100%;
+        height: 100vh;
+        display: none;
+        object-fit: cover;
+        opacity: 0.9;
+      }
+      .active {
+        display: block;
+      }
+    }
+
+    &__title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5rem;
+      color: $white-color;
+      text-transform: uppercase;
+      @include responsive-vw-pc() {
+        top: px2vw-pc(20px);
+        left: px2vw-pc(20px);
+      }
+
+      @include responsive-px-sp() {
+        top: px2vw-sp(20px);
+        left: px2vw-sp(20px);
+      }
+      span {
+        color: $sub-color;
+      }
+    }
+
+    .container__dots {
+      &--box {
+        position: absolute;
+        bottom: 30px;
+        @include responsive-vw-pc() {
+          bottom: px2vw-pc(30px);
+        }
+
+        @include responsive-px-sp() {
+          bottom: px2vw-sp(30px);
+        }
+        width: 100%;
+        .active {
+          background-color: $sub-color;
+        }
+      }
+      &-in {
+        display: flex;
+        justify-content: center;
+      }
+      &--item {
+        width: 15px;
+        height: 15px;
+        border: 2px solid $sub-color;
+        margin: 0px 10px;
+        cursor: pointer;
+        border-radius: 50px;
+        @include responsive-vw-pc() {
+          width: px2vw-pc(15px);
+          height: px2vw-pc(15px);
+          border: px2vw-pc(2px) solid $sub-color;
+        }
+
+        @include responsive-px-sp() {
+          width: px2vw-sp(15px);
+          height: px2vw-sp(15px);
+          border: px2vw-sp(2px) solid $sub-color;
+        }
+      }
+    }
+
+    .fade {
+      animation-name: fade;
+      animation-duration: 3s;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.7;
+      }
+
+      to {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .form__auth {
+    background-color: $primary-color;
+    height: 100vh;
+    padding-top: 70px;
+   
+    @include responsive-vw-pc() {
+      padding-top: px2vw-pc(70px);
+    }
+
+    @include responsive-px-sp() {
+      padding: px2vw-sp(70px) 0;
+      height: 100%;
+    }
+    .form__header {
+      text-align: center;
+      &--logo {
+        height: 100px;
+        margin: 15px 0px;
+        @include responsive-vw-pc() {
+          height: px2vw-pc(100px);
+          margin: px2vw-pc(15px) 0px;
+        }
+
+        @include responsive-px-sp() {
+          height: px2vw-sp(100px);
+          margin: px2vw-sp(15px) 0px;
+        }
+      }
+      &--title {
+        font-size: 1.2rem;
+        color: $white-color;
+        font-weight: 500;
+        margin-bottom: 20px;
+        @include responsive-vw-pc() {
+          margin-bottom: px2vw-pc(20px);
+        }
+
+        @include responsive-px-sp() {
+          margin-bottom: px2vw-sp(20px);
+        }
+      }
+    }
+    .form-box {
+      position: relative;
+      margin: 0px 25px;
+      padding-top: 25px;
+      @include responsive-vw-pc() {
+        margin: px2vw-pc(0px) px2vw-pc(20px);
+        padding-top: px2vw-pc(25px);
+      }
+
+      @include responsive-px-sp() {
+        margin: px2vw-sp(0px) px2vw-sp(20px);
+        padding-top: px2vw-sp(25px);
+      }
+      .input-wrapper {
+        padding-bottom: 15px;
+        @include responsive-vw-pc() {
+          padding-bottom: px2vw-pc(15px);
+        }
+
+        @include responsive-px-sp() {
+          padding-bottom: px2vw-sp(15px);
+        }
+        label {
+          color: #eeeeee;
+          font-size: 0.8rem;
+          letter-spacing: 0px;
+          margin-bottom: 5px;
+          @include responsive-vw-pc() {
+            padding-bottom: px2vw-pc(5px);
+          }
+
+          @include responsive-px-sp() {
+            padding-bottom: px2vw-sp(5px);
+          }
+          display: block;
+        }
+      }
+      .error {
+        color: $btn-hover;
+        font-size: 0.8rem;
+        letter-spacing: 0px;
+        padding-top: 3px;
+        @include responsive-vw-pc() {
+          padding-top: px2vw-pc(3px);
+        }
+
+        @include responsive-px-sp() {
+          padding-top: px2vw-sp(5px);
+        }
+      }
+      .box {
+        --border-height: 1px;
+        --border-before-color: rgba(221, 221, 221, 0.39);
+        --border-after-color: #e44c05;
+        --input-hovered-color: #4985e01f;
+        position: relative;
+        width: 100%;
+        .input {
+          color: #fff;
+          font-size: 0.9rem;
+          background-color: transparent;
+          width: 100%;
+          box-sizing: border-box;
+          padding-inline: 0.5em;
+          padding-block: 0.7em;
+          border: none;
+          border-bottom: var(--border-height) solid var(--border-before-color);
+        }
+        .input-border {
+          position: absolute;
+          background: var(--border-after-color);
+          width: 0%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          transition: 0.3s;
+        }
+        input:hover {
+          background: var(--input-hovered-color);
+        }
+
+        input:focus {
+          outline: none;
+          caret-color: $sub-color;
+        }
+        input:focus ~ .input-border {
+          width: 100%;
+        }
+      }
+      .form-footer {
+        p {
+          letter-spacing: 0px;
+          font-size: 0.8rem;
+          padding: 15px 0px;
+          color: #eeeeee;
+          @include responsive-vw-pc() {
+            padding: px2vw-pc(15px) px2vw-pc(0px);
+          }
+
+          @include responsive-px-sp() {
+            padding: px2vw-sp(15px) px2vw-sp(0px);
+          }
+          a {
+            color: $sub-color;
+            text-decoration: none;
+          }
+        }
+      }
+      .form-btn {
+        width: 100%;
+        padding: 7px 0px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        background: #23262d;
+        text-transform: uppercase;
+        color: #cfcdcd;
+        font-weight: 700;
+        border-top: 2px solid #2a2b37;
+        border-bottom: 2px solid #2a2b37;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        box-shadow: rgb(0 0 0 / 35%) 0px 3px 7px 0px;
+        @include responsive-vw-pc() {
+          padding: px2vw-pc(7px) px2vw-pc(0px);
+        }
+
+        @include responsive-px-sp() {
+          padding: px2vw-sp(10px) px2vw-sp(0px);
+        }
+      }
+      .form-btn:hover {
+        background-color: $sub-color;
+        color: $white-color;
+        transition: all ease-in-out 0.3s;
+        border-top: 2px solid $sub-color;
+        border-bottom: 2px solid $sub-color;
+      }
+    }
+    .form-box::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      top: 0;
+      left: 0;
+      background: radial-gradient(
+        circle,
+        rgb(235, 105, 19) 0%,
+        rgb(236, 139, 11) 61%,
+        rgba(0, 212, 255, 0) 100%
+      );
+    }
+  }
+}
