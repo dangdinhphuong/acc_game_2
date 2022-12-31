@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use App\Models\User;
+use App\Models\TransLogMomo;
+use Carbon\Carbon;
 class PayMomoController extends Controller
 {
 
@@ -62,7 +64,7 @@ class PayMomoController extends Controller
         $data = array(
             'partnerCode' => $partnerCode,
             'partnerName' => "Test",
-            "storeId" => "MomoTestStore",
+            "storeId" => env('APP_NAME'),
             'requestId' => $requestId,
             'amount' => $amount,
             'orderId' => $orderId,
@@ -87,7 +89,7 @@ class PayMomoController extends Controller
      // to do create trans_log
     function apiRequestMomo(Request $request)
     {   
-        $data = $request->all(); 
+        $data = $request->all();  
         if(!isset($data['requestId']) || empty($data['requestId']) || !isset($data['amount']) || empty($data['amount'])){
             return redirect()->route('momo')->with(['error' => 'Nạp thẻ thất bại chưa được thanh toán !']);
         }
@@ -102,10 +104,16 @@ class PayMomoController extends Controller
                     'token' => "",
                     'cash'  => auth()->user()->cash+$data['amount'],
                 ]);
-               
+                TransLogMomo::create([
+                    "name"=> auth()->user()->realname,
+                    "amount"=> $data['amount'],
+                    "trans_id"=> $data['transId'],
+                    "requestId"=> $data['requestId'],
+                    "date"=> Carbon::now(),
+                    "type"=> $data['orderType']
+                ]);
                 DB::commit();
                 $message ="Thành công";
-                
             } catch (Exception $exception) {
                 DB::rollBack();
                 Log::error($message);
@@ -113,14 +121,19 @@ class PayMomoController extends Controller
                 $message ="Thât bại";
                
             }
-            Log::info("thanh toán momo:" . auth()->user()->realname.'|id:'.auth()->user()->id.'|money:'.$data['amount'].'|transId:'.$data['transId'].'|message:'.$message);
+            Log::info("Thanh toán momo thành công :" . auth()->user()->realname.'|id:'.auth()->user()->id.'|money:'.$data['amount'].'|transId:'.$data['transId'].'|message:'.$message);
 
             if($message == "Thành công"){
                 return redirect()->route('momo')->with('success', "Nạp thẻ thành công !");
             }
+           
             return redirect()->back()->with(['error' => 'Nạp thẻ thất bại , vui lòng liên hệ với admin sớm nhất !']);
 
         }
+    }
+    public function historyRechargeMomo (){
+        $datas = TransLogMomo::where('name',auth()->user()->realname)->orderBy('date', 'DESC')->get();
+        return view('page.screen.historyRechargeMomo' ,  compact('datas'));
     }
 }
 

@@ -41,7 +41,7 @@ class RechargeController extends Controller
             $partner_key = env('PARTNER_KEY_CASH', "#");
             $sign = md5($partner_key . $request->code . $request->serial);
             $request_id = rand(100000000, 999999999);
-            $date = Carbon::now();;
+            $date = Carbon::now();
             $obj = $this->recharge_payin($partner_id, $request->type, $request->amount, $request->code, $request->serial, $request_id, $sign);
             Log::info("Nạp thẻ :" . auth()->user()->realname . "|" . $request->type . "| status: " . $obj['status'] . "| ip: " . $this->getUserIpAddr() . "| seri: " . $request->serial . "| code: " . $request->code . "| amount: " . $request->amount. "| status: " . $obj['status']);
             

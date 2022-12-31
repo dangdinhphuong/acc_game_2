@@ -28,7 +28,7 @@
                     <div class="container__dots--item"></div>
                 </div>
             </div>
-            <h2 class="container__title">seongshop<span>.com</span></h2>
+            <h2 class="container__title">uynguyen<span>.com</span></h2>
         </div>
         <div class="form__auth ">
             <div class="">

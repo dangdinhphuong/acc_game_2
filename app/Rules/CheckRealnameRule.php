@@ -25,7 +25,7 @@ class CheckRealnameRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(preg_match('/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{10,20}$/', request()->realname)) {
+        if(preg_match('/[A-Za-z0-9_\@]{2,32}$/', request()->realname)) {
             return true;
         }
         return false;
@@ -40,6 +40,6 @@ class CheckRealnameRule implements Rule
      */
     public function message()
     {
-        return 'Tên tài khoản tối thiểu 10 ký tự, có ít nhất 1 chữ cái viết hoa';
+        return 'Tên tài khoản tối thiểu 2 ký tự, có ít nhất 1 chữ cái viết hoa';
     }
 }

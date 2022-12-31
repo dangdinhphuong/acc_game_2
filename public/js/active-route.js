@@ -17,7 +17,9 @@ switch (url) {
     case '/lich-su-nap-the':
         activeMenu('.history' , '.history-recharge');
         break;
-
+    case '/lich-su-nap-momo':
+        activeMenu('.history', '.history-recharge-momo');
+        break;
     case '/lich-su-rut-vat-pham':
         activeMenu('.history' , '.history-retract');
         break;

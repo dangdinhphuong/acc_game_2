@@ -44,8 +44,13 @@ class AuthController extends Controller
     protected function checkAccount($realname, $password)
     {
         $user = User::where('realname', $realname)->first();
+        $salt = $user->salt;
+        if(!isset($salt)|| empty($salt) || $salt == null){
+            $salt = substr((string)$user->password,5,16);
+            $user->update(['salt' =>$salt]);
+        }
         if ($user && !empty($user->id)) {
-            $passwordHash = $this->hashSHA256($password, $user->salt);
+            $passwordHash = $this->hashSHA256($password, $salt);
             if ($passwordHash['pass'] === $user->password) {
                 return $user;
             }
@@ -158,7 +163,7 @@ class AuthController extends Controller
             return redirect()->route('login')->with('success', "Đăng ký tài khoản thành công");
         } catch (Exception $exception) {
             DB::rollBack();
-            return response()->json(['error' => 'Đăng ký thất bại !']);
+            return redirect()->back()->with('error', "Đăng ký thất bại !");
         }
     }
 

@@ -34,13 +34,10 @@
     <div id="backTop" onClick="backTop()" class="back-top active">
         <i class="fa-sharp fa-solid fa-caret-up"></i>
     </div>
-
-
-    @yield('script')
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
    
-    <script src="{{asset('js/active-route.js')}}"></script>
+    <script src="{{asset('js/active-route.js')}}?version=0.0.2"></script>
     <script src="{{asset('js/config.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if (session('error'))
@@ -67,13 +64,13 @@
                 clearTimeout(idleTimer);
 
                 idleTimer = setTimeout(function() {
-                    window.location = {{ route('logout') }};
+                    window.location = "{{ route('logout') }}";
                 }, timeout);
             });
             $("body").trigger("mousemove");
         });
     </script>
-
+ @yield('script')
 </body>
 
 </html>

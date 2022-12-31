@@ -16,7 +16,7 @@ class Maintence
      */
     public function handle(Request $request, Closure $next)
     {
-        if(env('MAINTENANCE_ALL')== true){
+        if(env('MAINTENANCE_ALL') == true){
             abort(503);
         }
         return $next($request);

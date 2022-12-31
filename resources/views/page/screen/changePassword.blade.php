@@ -35,7 +35,7 @@
         </div>
     </form>
 </section>
+@endsection
 @section('script')
 <script src="{{asset('js/change-password.js')}}"></script>
-@endsection
 @endsection
