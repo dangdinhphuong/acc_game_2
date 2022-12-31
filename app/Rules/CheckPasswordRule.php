@@ -25,7 +25,7 @@ class CheckPasswordRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(preg_match('/^[A-Za-z0-9_@#$%^&*()+=-]{7,10}$/', request()->password)) {
+        if(preg_match('/^[A-Za-z0-9_@#$%^&*()+=-]{7,32}$/', request()->password)) {
             return true;
         }
         return false;
@@ -38,6 +38,6 @@ class CheckPasswordRule implements Rule
      */
     public function message()
     {
-        return 'Mật khẩu tối thiểu 7 ký tự, tối đa 10 ký tự';
+        return 'Mật khẩu tối thiểu 7 ký tự';
     }
 }

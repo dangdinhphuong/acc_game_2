@@ -47,6 +47,7 @@ Route::group([
         Route::post('recharge', [RechargeController::class, 'recharge'])->name('recharge');
         Route::get('nap-the-momo', [PayMomoController::class, 'index'])->name('momo');
         Route::post('recharge-momo', [PayMomoController::class, 'store'])->name('rechargeMomo');
+        Route::get('/lich-su-nap-momo', [PayMomoController::class, 'historyRechargeMomo'])->name('historyRechargeMomo');
         // api nhận data từ momo khi thanh toán thành công
         Route::get('api-momo-pay', [PayMomoController::class, 'apiRequestMomo'])->name('apiRequestMomo');
     });

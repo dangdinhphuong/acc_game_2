@@ -62,8 +62,8 @@
             </div>
             <h3 class="form__title">Bước 2: <span>Nhập username (Minecraft)</span></h3>
             <div class="import__id-game">
-                <input name="username" placeholder="Nhập username">
-                <p>Ví dụ: uynguyen123</p>
+                <input name="username" placeholder="Nhập username" value="{{auth()->user()->realname}}" id="username"> 
+                <p>Ví dụ: {{auth()->user()->realname}}</p>
             </div>
             <button type="submit" class="btn__submit-game">Rút ngay</button>
         </form>
@@ -74,4 +74,11 @@
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+<script >
+$(document).ready(function(){
+
+});
+</script>
 @endsection

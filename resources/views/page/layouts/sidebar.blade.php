@@ -51,6 +51,9 @@
                 <li class="menu_nav--item history-recharge">
                     <a href="{{route('historyRecharge')}}" >Lịch sử nạp thẻ</a>
                 </li>
+                <li class="menu_nav--item history-recharge-momo">
+                    <a href="{{route('historyRechargeMomo')}}">Lịch sử nạp qua ATM/MOMO</a>
+                </li>
                 <li class="menu_nav--item history-retract">
                     <a href="{{route('historyRetract')}}">Lịch sử đổi xu</a>
                 </li>

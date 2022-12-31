@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Authme;
+use App\Models\User;
 use App\Models\PlayPoint;
-use App\Models\PlayUsername;
+use App\Models\PlayUserName;
 use App\Models\TransLogRetract;
 use Illuminate\Http\Request;
 use App\Models\trans_log;
 use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class HandleController extends Controller
@@ -25,34 +27,41 @@ class HandleController extends Controller
 
     public function Withdrawal(Request $request){
         $moneyAfter = (int)Auth::user()->cash - (int)$request->money;
-        $user = Authme::find(Auth::user()->id);
-        $isCheckUsername = Authme::where('realname' , $request->username)->get();
-        if(count($isCheckUsername) > 0){
-            $user->cash = (float)$moneyAfter;
-            $userGame = PlayUsername::where('username', $request->username)->get();
+        if((int)Auth::user()->cash >= (int)$request->money){
+        $user = User::find(Auth::user()->id);
+        if($user != null){
+            $user->cash = (int)$moneyAfter;
+            $userGame = PlayUserName::where('username', $request->username)->first(); 
+            if($userGame == null){ 
+                return redirect()->back()->with('warning', 'Bạn cần đăng nhập vào game lần đầu !');
+            }
             try {
-                if(count($userGame) > 0){
-                    $user->save(); 
-                    $pointCurrent = PlayPoint::where('uuid' , $userGame[0]->uuid)->get();
-                    $pointRow =PlayPoint::find($pointCurrent[0]->id);
-                    $pointRow->points = (int)$pointCurrent[0]->points + (int)$request->money;
-                    $pointRow->save();
+                DB::beginTransaction();
+                    User::update(['cash'=> (int)$moneyAfter]); 
+                    $pointCurrent = PlayPoint::where('uuid' , $userGame->uuid)->first();
+                    if($pointCurrent){
+                        PlayPoint::update(['points'=>(int)$pointCurrent->points + (int)$request->money]);
+                    }else{
+                        PlayPoint::create([
+                            "uuid"=>$userGame->uuid,
+                            'points'=>(int)$request->money]);
+                    }
                     TransLogRetract::create([
                         "username" => $request->username,
                         "points" => $request->money,
                         "user_id" => Auth::user()->id,
                     ]);
+                DB::commit();
                     return redirect()->back()->with('success', 'Rút vật phẩm thành công !');
-                }else{
-                    return redirect()->back()->with('warning', 'Bạn cần đăng nhập vào game lần đầu !');
-                }
-                
             } catch (Exception  $th) {
                 return redirect()->back()->with('error', 'Lỗi không rút được !');
             }
         }else{
+            DB::rollBack();
             return redirect()->back()->with('error', 'Tên tài khoản không đúng !');
         }
+      }
+      return redirect()->back()->with('error', 'Tài khoản của bạn không đủ!');
     }
 
     public function historyRetract(){
