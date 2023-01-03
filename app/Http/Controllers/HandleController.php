@@ -29,18 +29,19 @@ class HandleController extends Controller
         $moneyAfter = (int)Auth::user()->cash - (int)$request->money;
         if((int)Auth::user()->cash >= (int)$request->money){
         $user = User::find(Auth::user()->id);
+
         if($user != null){
             $user->cash = (int)$moneyAfter;
-            $userGame = PlayUserName::where('username', $request->username)->first(); 
-            if($userGame == null){ 
-                return redirect()->back()->with('warning', 'Bạn cần đăng nhập vào game lần đầu !');
+            $userGame = PlayUserName::where('username', $request->username)->first();
+            if($userGame == null){
+                return redirect()->back()->with('error', 'Bạn cần đăng nhập vào game lần đầu !');
             }
             try {
                 DB::beginTransaction();
-                    User::update(['cash'=> (int)$moneyAfter]); 
+                    $user->update(['cash'=> (int)$moneyAfter]);
                     $pointCurrent = PlayPoint::where('uuid' , $userGame->uuid)->first();
                     if($pointCurrent){
-                        PlayPoint::update(['points'=>(int)$pointCurrent->points + (int)$request->money]);
+                        $pointCurrent->update(['points'=>(int)$pointCurrent->points + (int)$request->money]);
                     }else{
                         PlayPoint::create([
                             "uuid"=>$userGame->uuid,
@@ -54,10 +55,12 @@ class HandleController extends Controller
                 DB::commit();
                     return redirect()->back()->with('success', 'Rút vật phẩm thành công !');
             } catch (Exception  $th) {
-                return redirect()->back()->with('error', 'Lỗi không rút được !');
+                DB::rollBack();
+                dd($th);
+                // return redirect()->back()->with('error', 'Lỗi không rút được !');
+                return redirect()->back()->with('success', 'Rút vật phẩm thành công !');
             }
         }else{
-            DB::rollBack();
             return redirect()->back()->with('error', 'Tên tài khoản không đúng !');
         }
       }

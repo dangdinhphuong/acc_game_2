@@ -22,7 +22,7 @@ use  App\Models\PlayPoint;
 
 class AuthController extends Controller
 {
-    // số lần thực hiện 
+    // số lần thực hiện
     protected $maxAttempts = 3;
     // thời gian tạm nghưng là 1 ngày
     protected $decayMinutes = 86400;
@@ -45,10 +45,11 @@ class AuthController extends Controller
     {
         $user = User::where('realname', $realname)->first();
         $salt = $user->salt;
-        if(!isset($salt)|| empty($salt) || $salt == null){
+        if(!isset($user->salt)|| empty($user->salt) || $user->salt == null){
             $salt = substr((string)$user->password,5,16);
             $user->update(['salt' =>$salt]);
         }
+
         if ($user && !empty($user->id)) {
             $passwordHash = $this->hashSHA256($password, $salt);
             if ($passwordHash['pass'] === $user->password) {

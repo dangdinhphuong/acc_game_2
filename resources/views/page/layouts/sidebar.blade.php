@@ -2,7 +2,7 @@
     <div class="header__nav">
         <img class="header__nav--avatar" src="{{asset('image/unknown-avatar (1).jpg')}}" alt="" />
         <div class="header__nav--info">
-            <span class="id">{{$currentUser->username}}</span>
+            <span class="id">{{$currentUser->realname}}</span>
             <span>Số dư : <span class="moneny"><?= number_format($currentUser->cash , 0 , '.' , '.') ?>đ</span></span>
         </div>
     </div>
