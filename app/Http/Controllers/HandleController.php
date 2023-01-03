@@ -37,7 +37,7 @@ class HandleController extends Controller
             }
             try {
                 DB::beginTransaction();
-                    User::update(['cash'=> (int)$moneyAfter]); 
+                    $user->update(['cash'=> (int)$moneyAfter]); 
                     $pointCurrent = PlayPoint::where('uuid' , $userGame->uuid)->first();
                     if($pointCurrent){
                         PlayPoint::update(['points'=>(int)$pointCurrent->points + (int)$request->money]);
@@ -54,6 +54,7 @@ class HandleController extends Controller
                 DB::commit();
                     return redirect()->back()->with('success', 'Rút vật phẩm thành công !');
             } catch (Exception  $th) {
+                dd($th);
                 return redirect()->back()->with('error', 'Lỗi không rút được !');
             }
         }else{
