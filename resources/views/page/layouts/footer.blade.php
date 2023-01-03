@@ -4,20 +4,9 @@
             <a href=""><img
                     src="{{asset('image/z3935489327534_4c7085bdda46955300abe4955beefb66-removebg-preview.png')}}"
                     alt="" /></a>
-            <ul class="footer__content-social">
-                <li class="footer__content-social--item">
-                    <a href=""><i class="fa-solid fa-caret-right"></i> PRIVACY POLICY</a>
-                </li>
-                <li class="footer__content-social--item">
-                    <a href=""><i class="fa-solid fa-caret-right"></i> TERMS OF SERVICE</a>
-                </li>
-                <li class="footer__content-social--item">
-                    <a href=""><i class="fa-solid fa-caret-right"></i> DELETE USER DATA</a>
-                </li>
-            </ul>
         </div>
         <div class="footer__content-box">
-            <h2 class="title-main hide-sp">SEONGSHOP.COM ACC MINECRAFT UY TÍN GIÁ RẺ CHẤT LƯỢNG.</h2>
+            <h2 class="title-main hide-sp">Server Minecraft Cute nhất Việt Nam!</h2>
             <div class="footer__content">
                 <div class="footer__info">
                     <h2 class="title">Về chúng tôi</h2>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="600;url={{route('login')}}" />
     <title>seongshop.com | Log in</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('image/z3935489327534_4c7085bdda46955300abe4955beefb66-removebg-preview.png') }}">
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
 </head>
 
@@ -14,17 +14,14 @@
     <div class="wrapper">
         <div class="container hide-sp">
             <div class="container__image--box">
-                <img src="https://preview.redd.it/ehvgoqf2grd61.png?width=1920&format=png&auto=webp&s=d6cb17f773a8c058957349fee592e906437176ba"
+                <img src="{{asset('image/banner-login3.jpg')}}"
                     alt="" class="fade active container__image 1" />
-                <img src="https://pbs.twimg.com/media/FN43-UUXoAEROHB.jpg:large" alt=""
+                <img src="{{asset('image/banner-login2.jpg')}}" alt=""
                     class="fade container__image 2" />
-                <img src="https://c4.wallpaperflare.com/wallpaper/968/762/547/minecraft-shader-wallpaper-preview.jpg"
-                    alt="" class="container__image fade 3" />
             </div>
             <div class="container__dots--box">
                 <div class="container__dots-in">
                     <div class="container__dots--item active"></div>
-                    <div class="container__dots--item"></div>
                     <div class="container__dots--item"></div>
                 </div>
             </div>
