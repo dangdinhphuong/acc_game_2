@@ -29,16 +29,16 @@ class HandleController extends Controller
         $moneyAfter = (int)Auth::user()->cash - (int)$request->money;
         if((int)Auth::user()->cash >= (int)$request->money){
         $user = User::find(Auth::user()->id);
-       
+
         if($user != null){
             $user->cash = (int)$moneyAfter;
-            $userGame = PlayUserName::where('username', $request->username)->first(); 
-            if($userGame == null){ 
+            $userGame = PlayUserName::where('username', $request->username)->first();
+            if($userGame == null){
                 return redirect()->back()->with('error', 'Bạn cần đăng nhập vào game lần đầu !');
             }
             try {
                 DB::beginTransaction();
-                    $user->update(['cash'=> (int)$moneyAfter]); 
+                    $user->update(['cash'=> (int)$moneyAfter]);
                     $pointCurrent = PlayPoint::where('uuid' , $userGame->uuid)->first();
                     if($pointCurrent){
                         $pointCurrent->update(['points'=>(int)$pointCurrent->points + (int)$request->money]);
