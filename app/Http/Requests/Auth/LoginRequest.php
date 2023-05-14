@@ -23,13 +23,14 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
+        $recaptchaRule = env('RECAPTCHA') == 'ON' ? 'required|recaptcha' : '';
         return [
 
             'realname' => [
                 'required',
             ],
             'password' => 'required',
-          //  'g-recaptcha-response'=>'required'
+            'g-recaptcha-response'=> $recaptchaRule
 
         ];
     }

@@ -79,9 +79,10 @@
                         <p class="error error-js-password_confirmation"></p>
                     </div>
                     <div class="input-wrapper">
-                    <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
-                    
-                    @error('g-recaptcha-response')  <p class="error error-password">{{$message}}</p>@enderror
+                        @if(env('RECAPTCHA') == "ON")
+                        <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
+                        @error('g-recaptcha-response')  <p class="error error-password">{{$message}}</p>@enderror
+                    @endif
                     </div>
                     <div class="form-footer">
                         <button class="form-btn" type="submit">Đăng ký ngay</button>

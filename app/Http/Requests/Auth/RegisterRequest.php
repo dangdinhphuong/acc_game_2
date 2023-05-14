@@ -5,6 +5,7 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CheckPasswordRule;
 use App\Rules\CheckRealnameRule;
+use Illuminate\Support\Facades\Config;
 class RegisterRequest extends FormRequest
 {
     /**
@@ -24,6 +25,7 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
+        $recaptchaRule = env('RECAPTCHA')== 'ON' ? 'required|recaptcha' : '';
         return [
 
             'realname' => [
@@ -38,7 +40,7 @@ class RegisterRequest extends FormRequest
                 'confirmed',
                 new CheckPasswordRule(),
             ],
-           // 'g-recaptcha-response'=>'required|recaptcha'
+            'g-recaptcha-response' => $recaptchaRule,
 
         ];
     }
