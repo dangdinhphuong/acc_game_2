@@ -38,6 +38,7 @@ class RegisterRequest extends FormRequest
                 'confirmed',
                 new CheckPasswordRule(),
             ],
+           // 'g-recaptcha-response'=>'required|recaptcha'
 
         ];
     }
@@ -48,7 +49,9 @@ class RegisterRequest extends FormRequest
             'email.required'  => 'Mời nhập email !',
             'email.unique'    => 'Email  đã tồn tại !',
             'password.required'  => 'Mời nhập mật khẩu !',
-            'password.confirmed' => 'Mật khẩu nhập lại không khớp mật khẩu!'
+            'password.confirmed' => 'Mật khẩu nhập lại không khớp mật khẩu!',
+            'g-recaptcha-response.required' => 'Tôi không phải người máy',
+            'g-recaptcha-response.recaptcha' => 'Tôi không phải người máy'
         ];
     }
     

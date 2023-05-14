@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
-
+    <meta http-equiv="refresh" content="600;url={{route('login')}}" />
+    <title>seongshop.com</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('image/z3935489327534_4c7085bdda46955300abe4955beefb66-removebg-preview.png') }}">
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
 </head>
 

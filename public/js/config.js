@@ -1,5 +1,11 @@
-
-function backTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+$(window).scroll(function() {
+  if ($(this).scrollTop()) {
+      $('#back-top').fadeIn();
+  } else {
+      $('#back-top').fadeOut();
   }
+});
+
+$("#back-top").click(function () {
+  $("html, body").animate({scrollTop: 0}, 1000);
+});

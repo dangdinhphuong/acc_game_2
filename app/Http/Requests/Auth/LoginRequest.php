@@ -29,6 +29,7 @@ class LoginRequest extends FormRequest
                 'required',
             ],
             'password' => 'required',
+          //  'g-recaptcha-response'=>'required'
 
         ];
     }
@@ -36,6 +37,7 @@ class LoginRequest extends FormRequest
         return [
             'realname.required' => 'Tài khoản không được để trống',
             'password.required' => 'mập khẩu không được để trống',
+            'g-recaptcha-response.required' => 'Tôi không phải người máy',
         ];
     }
     

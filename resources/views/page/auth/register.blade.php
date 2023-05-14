@@ -9,6 +9,7 @@
     <title>seongshop.com | Log in</title>
 
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -77,7 +78,11 @@
                         @enderror
                         <p class="error error-js-password_confirmation"></p>
                     </div>
-
+                    <div class="input-wrapper">
+                    <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
+                    
+                    @error('g-recaptcha-response')  <p class="error error-password">{{$message}}</p>@enderror
+                    </div>
                     <div class="form-footer">
                         <button class="form-btn" type="submit">Đăng ký ngay</button>
                         <p><a href="{{route('login')}}">Quay lại đăng nhập.</a></p>

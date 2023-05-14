@@ -9587,13 +9587,7 @@ body {
   font-size: 1.5rem;
   border-radius: 50px;
   cursor: pointer;
-  margin-bottom: -12rem;
 }
-
-.back-top.active{
-  margin-bottom: 0;
-}
-
 
 .fixed {
   overflow: hidden;
@@ -10168,7 +10162,7 @@ body {
 }
 
 .content {
-  background-image: url("./../image/z3935489386009_11eefc29011925d4c5c18698b221d79d (1).jpg");
+  background-image: url("./../image/z3935489386009_11eefc29011925d4c5c18698b221d79d\ \(1\).jpg");
   padding: 30px 0px;
   background-size: cover;
   height: 100%;
@@ -10771,12 +10765,6 @@ body {
     font-size: 3.0612244898vw;
   }
 }
-
-@media only screen and (max-width: 980.98px) {
-  .section__card--momo .momo__form-box .form__retract-checkbox .value {
-    font-size: 3.0612244898vw;
-  }
-}
 .content__main .section__retract-in .form__retract .import__id-game {
   margin: 35px 0px;
 }
@@ -10972,15 +10960,6 @@ body {
   margin-bottom: 20px;
   position: relative;
 }
-
-.content__main .section__card--recharge .section__card--box .form__card .form__control .error {
-  color: #DC3535;
-  font-size: 0.8rem;
-  letter-spacing: 0px;
-  padding-top: 3px;
-}
-
-
 .content__main .section__card--recharge .section__card--box .form__card .form__control label {
   color: white;
   display: block;
@@ -11059,14 +11038,13 @@ body {
 .content__main .section__card--recharge .section__card--box .form__card .form__control .inputbox input {
   position: relative;
   width: 100%;
-  padding: 12px 10px 10px;
+  padding: 20px 10px 10px;
   background: transparent;
   outline: none;
   box-shadow: none;
   border: none;
   color: white;
   font-size: 1rem;
-  margin-top: 10px;
   letter-spacing: 0.05em;
   transition: 0.5s;
   z-index: 10;
@@ -11164,6 +11142,11 @@ body {
 .content__main .section__card--momo .form__retract-checkbox {
   display: flex;
   margin-top: 20px;
+  /* Create a custom checkbox */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
   .content__main .section__card--momo .form__retract-checkbox {
@@ -11254,20 +11237,6 @@ body {
     width: 30.612244898vw;
   }
 }
-
-@media only screen and (max-width: 980.98px) {
-  .content__main .section__card--momo .form__control  {
-    grid-template-columns: 25.5102040816vw auto;
-    width: 30.612244898vw;
-  }
-}
-
-.content__main .section__card--momo .form__control .error{
-  color: #DC3535;
-  font-size: 0.8rem;
-  letter-spacing: 0px;
-  padding-top: 3px;
-}
 .content__main .section__card--momo .form__control .inputbox {
   position: relative;
   width: 100%;
@@ -11276,7 +11245,7 @@ body {
 .content__main .section__card--momo .form__control .inputbox input {
   position: relative;
   width: 100%;
-  padding: 12px 10px 10px;
+  padding: 20px 10px 10px;
   background: transparent;
   outline: none;
   box-shadow: none;
@@ -11285,7 +11254,6 @@ body {
   font-size: 1rem;
   letter-spacing: 0.05em;
   transition: 0.5s;
-  margin-top: 10px;
   z-index: 10;
 }
 .content__main .section__card--momo .form__control .inputbox span {
@@ -11321,13 +11289,13 @@ body {
   height: 40px;
 }
 .content__main .section__card--momo .momo__img {
+  padding-top: 25px;
   display: flex;
-  margin-top: 20px;
-  margin-left: 30px;
+  align-items: center;
+  justify-content: center;
 }
-
-.content__main .section__card--momo .momo__img img{
-  border-radius: 5px;
+.content__main .section__card--momo .momo__img img {
+  border-radius: 10px;
 }
 
 .footer {
@@ -11358,78 +11326,83 @@ body {
     grid-template-columns: 1fr;
   }
 }
-.footer .header img {
+@media only screen and (max-width: 979.98px) {
+  .footer .footer__header {
+    margin-bottom: 1.0204081633vw;
+  }
+}
+.footer .footer__header img {
   height: 100px;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
-  .footer .header img {
+  .footer .footer__header img {
     height: 7.9365079365vw;
   }
 }
 @media only screen and (max-width: 979.98px) {
-  .footer .header img {
-    height: 10.2040816327vw;
+  .footer .footer__header img {
+    height: 20.4081632653vw;
   }
 }
-.footer .header .footer__title {
+.footer .footer__header .footer__title {
   font-size: 1.1rem;
   color: white;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
-  .footer .header .footer__title {
+  .footer .footer__header .footer__title {
     margin-left: 4.7619047619vw;
   }
 }
 @media only screen and (max-width: 979.98px) {
-  .footer .header .footer__title {
+  .footer .footer__header .footer__title {
     margin-left: 6.1224489796vw;
   }
 }
-.footer .header .footer__content-social {
+.footer .footer__header .footer__content-social {
   list-style-type: none;
   margin-top: 10px;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
-  .footer .header .footer__content-social {
+  .footer .footer__header .footer__content-social {
     margin-top: 0.7936507937vw;
   }
 }
 @media only screen and (max-width: 979.98px) {
-  .footer .header .footer__content-social {
+  .footer .footer__header .footer__content-social {
     margin-top: 1.0204081633vw;
   }
 }
-.footer .header .footer__content-social--item {
+.footer .footer__header .footer__content-social--item {
   margin-bottom: 10px;
   transition: all ease-in-out 0.3s;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
-  .footer .header .footer__content-social--item {
+  .footer .footer__header .footer__content-social--item {
     margin-bottom: 0.7936507937vw;
   }
 }
 @media only screen and (max-width: 979.98px) {
-  .footer .header .footer__content-social--item {
+  .footer .footer__header .footer__content-social--item {
     margin-bottom: 1.0204081633vw;
   }
 }
-.footer .header .footer__content-social--item a {
+.footer .footer__header .footer__content-social--item a {
   font-size: 1rem;
   text-decoration: none;
   color: white;
 }
-.footer .header .footer__content-social--item:hover a {
+.footer .footer__header .footer__content-social--item:hover a {
   margin-left: 10px;
   transition: all ease-in-out 0.3s;
   color: #ff013c;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
-  .footer .header .footer__content-social--item:hover a {
+  .footer .footer__header .footer__content-social--item:hover a {
     margin-left: 0.7936507937vw;
   }
 }
 @media only screen and (max-width: 979.98px) {
-  .footer .header .footer__content-social--item:hover a {
+  .footer .footer__header .footer__content-social--item:hover a {
     margin-left: 1.0204081633vw;
   }
 }
@@ -11570,6 +11543,7 @@ body {
 .wrapper {
   display: grid;
   grid-template-columns: auto 415px;
+  height: 100vh;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
   .wrapper {
@@ -11583,14 +11557,15 @@ body {
 }
 .wrapper .container {
   position: relative;
-  height: 100vh;
+  height: 100%;
 }
 .wrapper .container .container__image--box {
   width: 100%;
+  height: 100%;
 }
 .wrapper .container .container__image--box .container__image {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: none;
   object-fit: cover;
   opacity: 0.9;
@@ -11679,7 +11654,6 @@ body {
 }
 .wrapper .form__auth {
   background-color: #1c1f26;
-  height: 100vh;
   padding-top: 70px;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
@@ -11689,8 +11663,7 @@ body {
 }
 @media only screen and (max-width: 980.98px) {
   .wrapper .form__auth {
-    padding: 7.1428571429vw 0;
-    height: 100%;
+    padding: 10.2040816327vw 0;
   }
 }
 .wrapper .form__auth .form__header {
@@ -11708,7 +11681,7 @@ body {
 }
 @media only screen and (max-width: 980.98px) {
   .wrapper .form__auth .form__header--logo {
-    height: 10.2040816327vw;
+    height: 20.4081632653vw;
     margin: 1.5306122449vw 0px;
   }
 }
@@ -11867,10 +11840,6 @@ body {
   border-radius: 3px;
   font-size: 0.8rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 7px 0px;
-}
-
-input::placeholder{
-  font-size: 14px;
 }
 @media only screen and (min-width: 980.98px) and (max-width: 1259.98px) {
   .wrapper .form__auth .form-box .form-btn {

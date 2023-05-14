@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="containerX footer__in">
-        <div class="header">
+        <div class="footer__header">
             <a href=""><img
                     src="{{asset('image/z3935489327534_4c7085bdda46955300abe4955beefb66-removebg-preview.png')}}"
                     alt="" /></a>

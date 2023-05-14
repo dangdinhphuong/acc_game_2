@@ -30,7 +30,7 @@
         <!-- Phần header -->
         @include('page.layouts.footer')
     </div>
-    <div id="backTop" onClick="backTop()" class="back-top active">
+    <div id="backTop" class="back-top active">
         <i class="fa-sharp fa-solid fa-caret-up"></i>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"

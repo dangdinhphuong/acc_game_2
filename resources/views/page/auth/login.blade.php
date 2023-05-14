@@ -8,6 +8,7 @@
     <title>seongshop.com | Log in</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('image/z3935489327534_4c7085bdda46955300abe4955beefb66-removebg-preview.png') }}">
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                     <div class="container__dots--item"></div>
                 </div>
             </div>
-            <h2 class="container__title">uynguyen<span>.com</span></h2>
+            <h2 class="container__title">mineahihi<span>.com</span></h2>
         </div>
         <div class="form__auth ">
             <div class="">
@@ -55,8 +56,14 @@
                         @error('password')  <p class="error error-password">{{$message}}</p>@enderror
                         <p class="error error-js-password"></p>
                     </div>
+                    <div class="input-wrapper">
+                    <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
+                    
+                    @error('g-recaptcha-response')  <p class="error error-password">{{$message}}</p>@enderror
+                    </div>
+                    
                     <div class="form-footer">
-                        {{-- <p>Bạn quên mật khẩu? <a href="{{route('forgetPass')}}">Lấy lại mật khẩu ngay.</a></p> --}}
+                         <p>Bạn quên mật khẩu? <a href="{{route('forgetPass')}}">Lấy lại mật khẩu ngay.</a></p> 
                         <p class="form-btn" style="text-align: center;" id="login">Đăng nhập ngay</p>
                         <p>Chưa có tài khoản? <a href="{{route('register_get')}}">Đăng ký thành viên.</a></p>
                     </div>

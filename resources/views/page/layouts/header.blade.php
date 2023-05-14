@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="header__option--item">
-                    <a href="" class="fancy">
+                    <a href="{{route('momo')}}" class="fancy">
                         <span class="top-key"><i class="fa-solid fa-money-check-dollar"></i></span>
                         <span class="text">Nạp thẻ ATM/momo</span>
                         <span class="bottom-key-1"></span>

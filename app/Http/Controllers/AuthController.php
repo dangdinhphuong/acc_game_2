@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redis;
 use  App\Models\PlayPoint;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -45,10 +46,11 @@ class AuthController extends Controller
     {
         $user = User::where('realname', $realname)->first();
         $salt = $user->salt;
-        if(!isset($salt)|| empty($salt) || $salt == null){
+        if(!isset($user->salt)|| empty($user->salt) || $user->salt == null){
             $salt = substr((string)$user->password,5,16);
             $user->update(['salt' =>$salt]);
         }
+        
         if ($user && !empty($user->id)) {
             $passwordHash = $this->hashSHA256($password, $salt);
             if ($passwordHash['pass'] === $user->password) {
@@ -90,7 +92,7 @@ class AuthController extends Controller
             if (RateLimiter::tooManyAttempts($key, $this->maxAttempts)) {
                 return redirect()->back()->with('error', "Bạn đã giửi yêu cầu quá số lần trong ngày");
             }
-            // khi đăng nhập sai ta dùng hit để tăng số lần đăng nhập sai
+            // ta dùng hit để tăng số lần đã giửi email
             RateLimiter::hit($key, $this->decayMinutes);
             $user = User::where('realname', $request->realname)->first();
 
@@ -110,7 +112,7 @@ class AuthController extends Controller
                     'token' => $token,
                 ]);
 
-                RateLimiter::clear($key); // xóa key
+                // RateLimiter::clear($key); // xóa key
                 return redirect()->route('login')->with('success', ' Yêu cầu đã giửi thành công vui lòng kiểm tra email đã đăng ký !');
             }
             return redirect()->back()->with('error', "Tài khoản chưa cập nhật email, không thể thực hiện chức năng !");
@@ -145,6 +147,10 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        // $checkRecaptcha = $this->validateRecaptcha($request->all()['g-recaptcha-response']);
+        // if(!$checkRecaptcha){
+        //     return redirect()->back()->with('error', "Yêu cầu xác nhận không phải người máy!");
+        // }
         try {
             DB::beginTransaction();
             $passHash = $this->hashSHA256(($request->password));
@@ -168,7 +174,12 @@ class AuthController extends Controller
     }
 
     public  function store(LoginRequest $request)
-    {
+    { 
+        // $checkRecaptcha = $this->validateRecaptcha($request->all()['g-recaptcha-response']);
+        // if(!$checkRecaptcha){
+        //     return redirect()->back()->with('error', "Yêu cầu xác nhận không phải người máy!");
+        // }
+        
         $user = $this->checkAccount($request->realname, $request->password);
         if (!$user || empty($user->id)) {
             return redirect()->back()->with('error', "Tài khoản hoặc mật khẩu không hợp lệ !");
@@ -185,6 +196,16 @@ class AuthController extends Controller
         Log::info("Đăng nhập :" . auth()->user()->realname . "| ip: " . request()->ip());
         return redirect()->route('profile')->with('success', "Đăng nhập tài khoản thành công !");
         return true;
+    }
+
+    // validate recaptcha
+    public function validateRecaptcha($recaptcha){
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $url .= '?secret='.env('GOOGLE_RECAPTCHA_SECRET');
+        $url .= '&response='.$recaptcha;
+        $response = Http::post($url);
+        $body = json_decode((string)$response->getBody());
+        return $body->success;
     }
 
     public function logout()
